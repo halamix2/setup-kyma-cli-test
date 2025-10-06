@@ -24,3 +24,17 @@ jobs:
         run: |
           ls -la ~/bin || true
           kyma version
+  windows_pwsh:
+    runs-on: windows-latest
+    name: Test on Windows with PowerShell
+    if: always()
+    steps:
+      - name: echo PATH
+        shell: pwsh
+        run: echo $env:PATH
+      - name: echo APTH on bash
+        shell: bash
+        run: echo $PATH
+      - name: echo PATH on cmd
+        shell: cmd
+        run: echo %PATH%
