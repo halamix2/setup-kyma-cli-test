@@ -1,0 +1,28 @@
+name: Empty Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Kyma CLI
+        uses: halamix2/setup-kyma-cli-action@31c1f34661c51342fa5cc754691725c5cc91ce73
+      - name: Verify Kyma CLI installation
+        run: kyma version
+  # get_ubuntu:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: halamix2/setup-kyma-cli-action@31c1f34661c51342fa5cc754691725c5cc91ce73
+  # get_macos:
+  #   runs-on: macos-latest
+  #   steps:
+  #     - uses: halamix2/setup-kyma-cli-action@31c1f34661c51342fa5cc754691725c5cc91ce73
+  # get_windows:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - uses: halamix2/setup-kyma-cli-action@31c1f34661c51342fa5cc754691725c5cc91ce73
