@@ -16,7 +16,7 @@ jobs:
     if: always()
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action@0d64ed9b7788518e596cc944564659144ced15e0
+        uses: halamix2/setup-kyma-cli-action@0f83b8481095245e636c26bdad192961dfd30878
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify Kyma CLI installation
@@ -27,7 +27,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action@0d64ed9b7788518e596cc944564659144ced15e0
+        uses: halamix2/setup-kyma-cli-action@0f83b8481095245e636c26bdad192961dfd30878
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target-dir: C:\vcpkg
@@ -35,3 +35,18 @@ jobs:
         shell: cmd
         run: |
           kyma version
+  windows_default_pwsh:
+    runs-on: windows-latest
+    steps:
+      - name: Set up Kyma CLI
+        uses: halamix2/setup-kyma-cli-action@0f83b8481095245e636c26bdad192961dfd30878
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify Kyma CLI installation under cmd
+        shell: cmd
+        run: |
+          kyma version
+      - name: Verify Kyma CLI installation under pwsh
+        shell: pwsh
+        run: |
+          kyma.exe version
