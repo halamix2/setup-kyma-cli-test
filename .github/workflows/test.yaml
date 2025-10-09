@@ -25,9 +25,10 @@ jobs:
           kyma version
   custom_path:
     runs-on: windows-latest
+    needs: [test]
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action@0f83b8481095245e636c26bdad192961dfd30878
+        uses: halamix2/setup-kyma-cli-action@c4423d45ff7f3198bb8e021c1dc18898351597e3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target-dir: C:\vcpkg
@@ -37,9 +38,10 @@ jobs:
           kyma version
   windows_default_pwsh:
     runs-on: windows-latest
+    needs: [custom_path]
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action@0f83b8481095245e636c26bdad192961dfd30878
+        uses: halamix2/setup-kyma-cli-action@c4423d45ff7f3198bb8e021c1dc18898351597e3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify Kyma CLI installation under cmd
@@ -50,3 +52,37 @@ jobs:
         shell: pwsh
         run: |
           kyma.exe version
+  multiple:
+    runs-on: ubuntu-latest
+    needs: [windows_default_pwsh]
+    steps:
+      - name: Set up Kyma CLI
+        uses: halamix2/setup-kyma-cli-action@c4423d45ff7f3198bb8e021c1dc18898351597e3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Verify Kyma CLI installation
+        shell: bash
+        run: |
+          kyma version
+      - name: Set up Kyma CLI again to hit cache
+        uses: halamix2/setup-kyma-cli-action@c4423d45ff7f3198bb8e021c1dc18898351597e3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+  multiple_forced:
+    runs-on: ubuntu-latest
+    needs: [multiple]
+    steps:
+      - name: Set up Kyma CLI
+        uses: halamix2/setup-kyma-cli-action@c4423d45ff7f3198bb8e021c1dc18898351597e3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+      - name: Verify Kyma CLI installation
+        shell: bash
+        run: |
+          kyma version
+      - name: Set up Kyma CLI again to hit cache
+        uses: halamix2/setup-kyma-cli-action@c4423d45ff7f3198bb8e021c1dc18898351597e3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
