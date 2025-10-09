@@ -16,7 +16,7 @@ jobs:
     if: always()
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action-tmp@469558f1b267c2a3b22b8e4cb1ec375779d45263
+        uses: halamix2/setup-kyma-cli-action-tmp@1b734fbaf2c5a67dfda8669e6cef53bdc92a05be
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: 0.0.0-dev
@@ -29,7 +29,7 @@ jobs:
     needs: [test]
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action-tmp@469558f1b267c2a3b22b8e4cb1ec375779d45263
+        uses: halamix2/setup-kyma-cli-action-tmp@1b734fbaf2c5a67dfda8669e6cef53bdc92a05be
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target-dir: C:\vcpkg
@@ -42,7 +42,7 @@ jobs:
     needs: [custom_path]
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action-tmp@469558f1b267c2a3b22b8e4cb1ec375779d45263
+        uses: halamix2/setup-kyma-cli-action-tmp@1b734fbaf2c5a67dfda8669e6cef53bdc92a05be
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify Kyma CLI installation under cmd
@@ -58,7 +58,7 @@ jobs:
     needs: [windows_default_pwsh]
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action-tmp@469558f1b267c2a3b22b8e4cb1ec375779d45263
+        uses: halamix2/setup-kyma-cli-action-tmp@1b734fbaf2c5a67dfda8669e6cef53bdc92a05be
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Verify Kyma CLI installation
@@ -66,7 +66,7 @@ jobs:
         run: |
           kyma version
       - name: Set up Kyma CLI again to hit cache
-        uses: halamix2/setup-kyma-cli-action-tmp@469558f1b267c2a3b22b8e4cb1ec375779d45263
+        uses: halamix2/setup-kyma-cli-action-tmp@1b734fbaf2c5a67dfda8669e6cef53bdc92a05be
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
   multiple_forced:
@@ -74,7 +74,7 @@ jobs:
     needs: [multiple]
     steps:
       - name: Set up Kyma CLI
-        uses: halamix2/setup-kyma-cli-action-tmp@469558f1b267c2a3b22b8e4cb1ec375779d45263
+        uses: halamix2/setup-kyma-cli-action-tmp@1b734fbaf2c5a67dfda8669e6cef53bdc92a05be
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           force: true
@@ -83,7 +83,7 @@ jobs:
         run: |
           kyma version
       - name: Set up Kyma CLI again to hit cache
-        uses: halamix2/setup-kyma-cli-action-tmp@469558f1b267c2a3b22b8e4cb1ec375779d45263
+        uses: halamix2/setup-kyma-cli-action-tmp@1b734fbaf2c5a67dfda8669e6cef53bdc92a05be
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           force: true
