@@ -19,6 +19,7 @@ jobs:
         uses: halamix2/setup-kyma-cli-action@0f83b8481095245e636c26bdad192961dfd30878
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          version: 0.0.0-dev
       - name: Verify Kyma CLI installation
         shell: bash
         run: |
